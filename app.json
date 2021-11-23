@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "sapp",
+    "slug": "sapp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "sapp"
+}
