@@ -28,8 +28,8 @@ class Login extends React.Component {
                     secureTextEntry={true}
                     onChangeText={(text) => { this.setState({ password: text }) }}
                     style={styles.input}/>
-
                 <Button title="submit" onPress={() => {this.submit()}}/>
+                <Text>Nouveau ici? Inscrit toi</Text>
             </View>
         )
     }
