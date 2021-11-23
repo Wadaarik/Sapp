@@ -12,6 +12,7 @@ class Login extends React.Component {
         // if(this.state.email === "gerard@mail.fr" && this.state.password === "gerard"){
         if(this.state.email === "G" && this.state.password === "g"){
             console.warn(this.state);
+            //Redirect
         }
     }
 
