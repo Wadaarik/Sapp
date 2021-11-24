@@ -11,4 +11,4 @@ expo start
 ## Icons navigation
 
 https://oblador.github.io/react-native-vector-icons/ 
-### MaterialCommunityIcons
+-- MaterialCommunityIcons
