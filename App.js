@@ -7,6 +7,9 @@ import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import DressingScreen from "./screens/DressingScreen";
+import MarketScreen from "./screens/MarketScreen";
+import ForumScreen from "./screens/ForumScreen";
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -16,10 +19,28 @@ export default function App() {
     return (
             <NavigationContainer>
                 <Navigator>
+                    <Screen name="Dressing" component={DressingScreen} options={{
+                        tabBarLabel: 'Dressing',
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="wardrobe" color='#ED2D90' size={size} />
+                        ),
+                    }}/>
+                    <Screen name="Marketplace" component={MarketScreen} options={{
+                        tabBarLabel: 'Marketplace',
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="cart" color='#ED2D90' size={size} />
+                        ),
+                    }}/>
                      <Screen name="Home" component={HomeScreen} options={{
                          tabBarLabel: 'Home',
                          tabBarIcon: ({ color, size }) => (
-                             <MaterialCommunityIcons name="home" color='#ED2D90' size={size}/>
+                             <MaterialCommunityIcons name="circle-slice-8" color='#ED2D90' size={size}/>
+                         ),
+                     }}/>
+                     <Screen name="Forum" component={ForumScreen} options={{
+                         tabBarLabel: 'Forum',
+                         tabBarIcon: ({ color, size }) => (
+                             <MaterialCommunityIcons name="comment" color='#ED2D90' size={size}/>
                          ),
                      }}/>
                      <Screen name="Profile" component={ProfileScreen} options={{
