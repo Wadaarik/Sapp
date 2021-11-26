@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import Login from "./login";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import DressingScreen from "./screens/DressingScreen";
@@ -43,7 +44,8 @@ export default function App() {
                              <MaterialCommunityIcons name="comment" color='#ED2D90' size={size}/>
                          ),
                      }}/>
-                     <Screen name="Profile" component={ProfileScreen} options={{
+                     {/*<Screen name="Profile" component={ProfileScreen} options={{*/}
+                     <Screen name="Profile" component={Login} options={{
                          tabBarLabel: 'Profile',
                          tabBarIcon: ({ color, size }) => (
                              <MaterialCommunityIcons name="account-circle" color='#ED2D90' size={size} />
