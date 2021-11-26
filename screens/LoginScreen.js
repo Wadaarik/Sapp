@@ -1,12 +1,17 @@
 import React from 'react';
 import {View, Text, TextInput, Pressable, Button, StyleSheet, AppRegistry} from 'react-native';
+<<<<<<< HEAD
 import AsyncStorage from '@react-native-async-storage/async-storage';
+=======
+
+>>>>>>> a7622b9 (Page for login & signup; migrations table users & sexe)
 
 class LoginScreen extends React.Component {
     state = {
         email: '',
         password: '',
         toRedirect: false,
+<<<<<<< HEAD
         showLogin: true,
     }
 
@@ -23,12 +28,20 @@ class LoginScreen extends React.Component {
                 }
             }
             storeData();
+=======
+    }
+
+    submit() {
+        if(this.state.email === "gerard@mail.fr" && this.state.password === "gerard") {
+            //Redirect
+>>>>>>> a7622b9 (Page for login & signup; migrations table users & sexe)
             this.props.navigation.navigate('Home');
             //Reset state
             console.log(this.state);
         }
     }
 
+<<<<<<< HEAD
     switchForm(value) {
         this.setState({ showLogin: value })
     }
@@ -102,6 +115,30 @@ class LoginScreen extends React.Component {
                         <Text style={styles.noAccount}>Déjà un compte ? <Text style={styles.AccountLink} onPress={() => this.switchForm(true)} >Connectez-vous</Text></Text>
                     </View>
                 )}
+=======
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.label}>Email</Text>
+                <TextInput
+                    onChangeText={(text) => { this.setState({ email: text }) }}
+                    style={styles.input}
+                    autoCapitalize='none'
+                    keyboardType="email-address" />
+
+                <Text style={styles.label}>Mot de passe</Text>
+                <TextInput
+                    secureTextEntry={true}
+                    onChangeText={(text) => { this.setState({ password: text }) }}
+                    style={styles.input}
+                    autoCapitalize='none' />
+
+                <Pressable style={styles.button} onPress={() => {this.submit()}}>
+                    <Text style={styles.buttonText}>Se Connecter</Text>
+                </Pressable>
+
+                <Text style={styles.noAccount}>Pas encore inscrit ? <Text style={styles.noAccountLink} onPress={() => this.props.navigation.navigate("Home")} >Créer un compte</Text></Text>
+>>>>>>> a7622b9 (Page for login & signup; migrations table users & sexe)
             </View>
         )
     }
@@ -115,12 +152,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+<<<<<<< HEAD
     container2: {
         width: '90%',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
+=======
+>>>>>>> a7622b9 (Page for login & signup; migrations table users & sexe)
     label: {
         width: '90%',
     },
@@ -151,9 +191,15 @@ const styles = StyleSheet.create({
     noAccountLink: {
         color: 'blue',
     },
+<<<<<<< HEAD
     AccountLink: {
         color: 'blue',
     },
 });
 
 export default LoginScreen;
+=======
+});
+
+export default LoginScreen;
+>>>>>>> a7622b9 (Page for login & signup; migrations table users & sexe)
