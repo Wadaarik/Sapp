@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {StyleSheet, Text, View, TextInput, Pressable} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
@@ -244,6 +245,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+<<<<<<< HEAD
     title: {
         fontSize: 24,
         marginBottom: 20,
@@ -284,3 +286,6 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+=======
+});
+>>>>>>> 0ccc025 (design page login)
