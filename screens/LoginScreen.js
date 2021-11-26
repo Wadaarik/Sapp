@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, TextInput, Pressable, StyleSheet} from 'react-native';
+import {View, Text, TextInput, Pressable, Button, StyleSheet, AppRegistry} from 'react-native';
 
 
-class Login extends React.Component {
+class LoginScreen extends React.Component {
     state = {
         email: '',
         password: '',
@@ -12,6 +12,8 @@ class Login extends React.Component {
     submit() {
         if(this.state.email === "gerard@mail.fr" && this.state.password === "gerard") {
             //Redirect
+            this.props.navigation.navigate('Home');
+            //Reset state
             console.log(this.state);
         }
     }
@@ -23,19 +25,21 @@ class Login extends React.Component {
                 <TextInput
                     onChangeText={(text) => { this.setState({ email: text }) }}
                     style={styles.input}
-                    keyboardType="email-address"/>
+                    autoCapitalize='none'
+                    keyboardType="email-address" />
 
                 <Text style={styles.label}>Mot de passe</Text>
                 <TextInput
                     secureTextEntry={true}
                     onChangeText={(text) => { this.setState({ password: text }) }}
-                    style={styles.input}/>
+                    style={styles.input}
+                    autoCapitalize='none' />
 
-                <Pressable style={styles.button}
-                           onPress={() => {this.submit()}}
-                >
+                <Pressable style={styles.button} onPress={() => {this.submit()}}>
                     <Text style={styles.buttonText}>Se Connecter</Text>
                 </Pressable>
+
+                <Text style={styles.noAccount}>Pas encore inscrit ? <Text style={styles.noAccountLink} onPress={() => this.props.navigation.navigate("Home")} >Créer un compte</Text></Text>
             </View>
         )
     }
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 5,
         margin: 10,
-        paddingHorizontal: 5,
+        paddingHorizontal: 10,
         paddingVertical: 10,
         backgroundColor: '#fff',
     },
@@ -72,7 +76,13 @@ const styles = StyleSheet.create({
     buttonText: {
         textTransform: 'uppercase',
         color: '#FFFFFF'
-    }
+    },
+    noAccount: {
+        marginTop: 20,
+    },
+    noAccountLink: {
+        color: 'blue',
+    },
 });
 
-export default Login;
+export default LoginScreen;
