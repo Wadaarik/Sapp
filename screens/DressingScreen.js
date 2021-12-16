@@ -102,7 +102,7 @@ export default function DressingScreen(){
     };
 
     function SnapView() {
-        return null;
+        alert("Camera need to be active")
     }
 
 
@@ -152,9 +152,11 @@ export default function DressingScreen(){
                     </View>
                 )}
             </View>
-            <View style={styles.addItem}>
-                <Button title="My btn" onPress={SnapView} style={styles.button}  />
-            </View>
+            <Pressable onPress={SnapView} style={styles.addItem}>
+                <Text>
+                    <MaterialCommunityIcons style={styles.button} name="plus"/>
+                </Text>
+            </Pressable>
         </SafeAreaView>
     );
 
@@ -233,14 +235,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         right: 30,
         bottom: 30,
-    },
-    button:{
         backgroundColor: '#ED2D90',
-        borderRadius: 50,
-        elevation: 3,
         shadowColor: '#000',
+        elevation: 3,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 20,
+        borderRadius: 50,
+    },
+    button:{
+        color: "#f2f2f2",
+        fontSize: 20
     }
 });

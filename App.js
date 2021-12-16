@@ -44,6 +44,7 @@ export default function App() {
                      }}/>
                      <Screen name="Profile" component={ProfileScreen} options={{
                          tabBarLabel:() => {return null},
+                         title: '',
                          tabBarIcon: ({ color, size }) => (
                              <MaterialCommunityIcons name="account-circle" color='#ED2D90' size={size} />
                          ),
