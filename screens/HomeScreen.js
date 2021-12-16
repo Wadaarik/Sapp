@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const HomeScreen = props =>{
+export default function HomeScreen(){
+
+
     const goTo = () =>{
         //console.log("Props", props)
         props.navigation.push('Profile')
@@ -35,5 +37,3 @@ const styles = StyleSheet.create({
         height: 40
     }
 });
-
-export default HomeScreen;
