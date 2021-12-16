@@ -89,7 +89,11 @@ const styles = StyleSheet.create({
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default SignupScreen;
 =======
 export default SignupScreen;
 >>>>>>> a7622b9 (Page for login & signup; migrations table users & sexe)
+=======
+export default SignupScreen;
+>>>>>>> 38beecf (add change login/signup)
