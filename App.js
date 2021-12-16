@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
@@ -12,12 +12,32 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 import DressingScreen from "./screens/DressingScreen";
 import MarketScreen from "./screens/MarketScreen";
 import ForumScreen from "./screens/ForumScreen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
 //console.log(createBottomTabNavigator())
 
 export default function App() {
+    const [login, setLogin] = useState(false);
+
+    useEffect(() => {
+        getData();
+    })
+
+    const getData = () => {
+        try {
+            AsyncStorage.getItem('token').then(value=> {
+                if(value === 'loginYes') {
+                    setLogin(true);
+                    console.log('token get');
+                }
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     return (
             <NavigationContainer>
                 <Navigator>
@@ -45,8 +65,8 @@ export default function App() {
                              <MaterialCommunityIcons name="comment" color='#ED2D90' size={size}/>
                          ),
                      }}/>
-                     <Screen name="Signup" component={SignupScreen} options={{}} />
-                     <Screen name="Profile" component={LoginScreen} options={{
+
+                     <Screen name="Profile" component={ login ? ProfileScreen : LoginScreen} options={{
                          tabBarLabel: 'Profile',
                          tabBarIcon: ({ color, size }) => (
                              <MaterialCommunityIcons name="account-circle" color='#ED2D90' size={size} />

@@ -1,45 +1,107 @@
 import React from 'react';
 import {View, Text, TextInput, Pressable, Button, StyleSheet, AppRegistry} from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class LoginScreen extends React.Component {
     state = {
         email: '',
         password: '',
         toRedirect: false,
+        showLogin: true,
     }
 
     submit() {
-        if(this.state.email === "gerard@mail.fr" && this.state.password === "gerard") {
+        // if(this.state.email === "gerard@mail.fr" && this.state.password === "gerard") {
+        if(this.state.email === "g" && this.state.password === "g") {
             //Redirect
+            const storeData = async () => {
+                try {
+                    await AsyncStorage.setItem('token', 'loginYes')
+                    console.log('token save');
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+            storeData();
             this.props.navigation.navigate('Home');
             //Reset state
             console.log(this.state);
         }
     }
 
+    switchForm(value) {
+        this.setState({ showLogin: value })
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.label}>Email</Text>
-                <TextInput
-                    onChangeText={(text) => { this.setState({ email: text }) }}
-                    style={styles.input}
-                    autoCapitalize='none'
-                    keyboardType="email-address" />
+                {this.state.showLogin ? (
+                    <View style={styles.container2}>
+                        <Text style={styles.label}>Email</Text>
+                        <TextInput
+                            onChangeText={(text) => { this.setState({ email: text }) }}
+                            style={styles.input}
+                            autoCapitalize='none'
+                            keyboardType="email-address" />
 
-                <Text style={styles.label}>Mot de passe</Text>
-                <TextInput
-                    secureTextEntry={true}
-                    onChangeText={(text) => { this.setState({ password: text }) }}
-                    style={styles.input}
-                    autoCapitalize='none' />
+                        <Text style={styles.label}>Mot de passe</Text>
+                        <TextInput
+                            secureTextEntry={true}
+                            onChangeText={(text) => { this.setState({ password: text }) }}
+                            style={styles.input}
+                            autoCapitalize='none' />
 
-                <Pressable style={styles.button} onPress={() => {this.submit()}}>
-                    <Text style={styles.buttonText}>Se Connecter</Text>
-                </Pressable>
+                        <Pressable style={styles.button} onPress={() => {this.submit()}}>
+                            <Text style={styles.buttonText}>Se Connecter</Text>
+                        </Pressable>
 
-                <Text style={styles.noAccount}>Pas encore inscrit ? <Text style={styles.noAccountLink} onPress={() => this.props.navigation.navigate("Home")} >Créer un compte</Text></Text>
+                        <Text style={styles.noAccount}>Pas encore inscrit ? <Text style={styles.noAccountLink} onPress={() => this.switchForm(false)} >Créer un compte</Text></Text>
+                    </View>
+                ): (
+                    <View style={styles.container2}>
+                        <Text style={styles.title}>Créez votre compte</Text>
+
+                        <Text style={styles.label}>Email</Text>
+                        <TextInput
+                            onChangeText={(text) => { this.setState({ email: text }) }}
+                            style={styles.input}
+                            autoCapitalize='none'
+                            keyboardType="email-address" />
+
+                        <Text style={styles.label}>Pseudo</Text>
+                        <TextInput
+                            onChangeText={(text) => { this.setState({ pseudo: text }) }}
+                            style={styles.input}
+                            autoCapitalize='none' />
+
+                        <Text style={styles.label}>Sexe</Text>
+                        <TextInput
+                            onChangeText={(text) => { this.setState({ sexe: text }) }}
+                            style={styles.input} />
+
+                        <Text style={styles.label}>Mot de passe</Text>
+                        <TextInput
+                            secureTextEntry={true}
+                            onChangeText={(text) => { this.setState({ password: text }) }}
+                            style={styles.input}
+                            autoCapitalize='none' />
+
+                        <Text style={styles.label}>Confirmer le mot de passe</Text>
+                        <TextInput
+                            secureTextEntry={true}
+                            onChangeText={(text) => { this.setState({ passwordConfirm: text }) }}
+                            style={styles.input}
+                            autoCapitalize='none' />
+
+                        <Pressable style={styles.button}
+                                   onPress={() => {this.submit()}}>
+                            <Text style={styles.buttonText}>Je m'inscris</Text>
+                        </Pressable>
+
+                        <Text style={styles.noAccount}>Déjà un compte ? <Text style={styles.AccountLink} onPress={() => this.switchForm(true)} >Connectez-vous</Text></Text>
+                    </View>
+                )}
             </View>
         )
     }
@@ -50,6 +112,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f2f2f2',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    container2: {
+        width: '90%',
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -81,6 +149,9 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     noAccountLink: {
+        color: 'blue',
+    },
+    AccountLink: {
         color: 'blue',
     },
 });

@@ -1,7 +1,19 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, Pressable} from 'react-native';
+import useStable from "react-native-web/dist/modules/useStable";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = props =>{
+    const removeData = async () => {
+        try {
+            await AsyncStorage.removeItem('token');
+            console.log('token remove');
+        } catch (e) {
+            console.log(e)
+        }
+        // this.props.navigation.navigate('Home');
+    }
+
     const goTo = () =>{
         //console.log("Props", props)
         props.navigation.push('Profile')
@@ -14,6 +26,9 @@ const HomeScreen = props =>{
                     <Text>Aller à Profile</Text>
                 </View>
             </TouchableOpacity>
+            <Pressable onPress={() => {removeData()}}>
+                <Text>remove data</Text>
+            </Pressable>
         </View>
     );
 };
