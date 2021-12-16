@@ -2,8 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function HomeScreen(){
-
-
     const goTo = () =>{
         //console.log("Props", props)
         props.navigation.push('Profile')
