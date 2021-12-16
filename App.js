@@ -1,17 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react';
 import {StyleSheet, Text, View, TextInput, Pressable} from 'react-native';
 =======
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 >>>>>>> 38beecf (add change login/signup)
+=======
+import React from 'react';
+import {StyleSheet, Text, View, TextInput, Pressable} from 'react-native';
+>>>>>>> ead9c24 (login/signup with proto)
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import LoginScreen from "./screens/LoginScreen";
-import SignupScreen from "./screens/SignupScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import DressingScreen from "./screens/DressingScreen";
@@ -24,11 +26,15 @@ const {Navigator, Screen} = createBottomTabNavigator();
 //console.log(createBottomTabNavigator())
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ead9c24 (login/signup with proto)
 class App extends React.Component {
     state = {
         isLogin: false,
         showLogin: true,
     }
+<<<<<<< HEAD
 
     getData() {
         try {
@@ -204,13 +210,16 @@ export default function App() {
     useEffect(() => {
         getData();
     })
+=======
+>>>>>>> ead9c24 (login/signup with proto)
 
-    const getData = () => {
+    getData() {
         try {
             AsyncStorage.getItem('token').then(value=> {
-                if(value === 'loginYes') {
-                    setLogin(true);
+                if(value !== null && value === 'loginYes') {
+                    this.setState({isLogin: true});
                     console.log('token get');
+                    console.log(this.state.isLogin);
                 }
             })
         } catch (e) {
@@ -218,6 +227,7 @@ export default function App() {
         }
     }
 
+<<<<<<< HEAD
     return (
             <NavigationContainer>
                 <Navigator>
@@ -257,6 +267,161 @@ export default function App() {
             </NavigationContainer>
     );
 >>>>>>> fceebbc (profile)
+=======
+    componentDidMount() {
+        this.getData();
+    }
+
+    submitSignup() {
+        const storeData = async () => {
+            try {
+                await AsyncStorage.setItem('token', 'loginYes')
+                this.setState({isLogin: true});
+                console.log('token save');
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        storeData();
+        console.log(this.state);
+    }
+
+
+    submitLogin() {
+        if(this.state.email === "gerard.em@mail.com" && this.state.password === "loituma") {
+            const storeData = async () => {
+                try {
+                    await AsyncStorage.setItem('token', 'loginYes')
+                    this.setState({isLogin: true});
+                    console.log('token save');
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+            storeData();
+            console.log(this.state);
+        }
+    }
+
+    switchForm(value) {
+        this.setState({ showLogin: value })
+    }
+
+
+    render() {
+        return (
+            <View style={styles.container}>
+                {this.state.isLogin === false ? (
+                    this.state.showLogin ? (
+                            <View style={styles.containerLogin}>
+                                <Text style={styles.title}>Connectez-vous</Text>
+
+                                <Text style={styles.label}>Email</Text>
+                                <TextInput
+                                    onChangeText={(text) => { this.setState({ email: text }) }}
+                                    style={styles.input}
+                                    autoCapitalize='none'
+                                    keyboardType="email-address" />
+
+                                <Text style={styles.label}>Mot de passe</Text>
+                                <TextInput
+                                    secureTextEntry={true}
+                                    onChangeText={(text) => { this.setState({ password: text }) }}
+                                    style={styles.input}
+                                    autoCapitalize='none' />
+
+                                <Pressable style={styles.button} onPress={() => {this.submitLogin()}}>
+                                    <Text style={styles.buttonText}>Se Connecter</Text>
+                                </Pressable>
+
+                                <Text style={styles.noAccount}>Pas encore inscrit ? <Text style={styles.noAccountLink} onPress={() => this.switchForm(false)} >Créer un compte</Text></Text>
+                            </View>
+                        ): (
+                            <View style={styles.containerLogin}>
+                                <Text style={styles.title}>Créez votre compte</Text>
+
+                                <Text style={styles.label}>Email</Text>
+                                <TextInput
+                                    onChangeText={(text) => { this.setState({ email: text }) }}
+                                    style={styles.input}
+                                    autoCapitalize='none'
+                                    keyboardType="email-address" />
+
+                                <Text style={styles.label}>Pseudo</Text>
+                                <TextInput
+                                    onChangeText={(text) => { this.setState({ pseudo: text }) }}
+                                    style={styles.input}
+                                    autoCapitalize='none' />
+
+                                <Text style={styles.label}>Sexe</Text>
+                                <TextInput
+                                    onChangeText={(text) => { this.setState({ sexe: text }) }}
+                                    style={styles.input} />
+
+                                <Text style={styles.label}>Mot de passe</Text>
+                                <TextInput
+                                    secureTextEntry={true}
+                                    onChangeText={(text) => { this.setState({ password: text }) }}
+                                    style={styles.input}
+                                    autoCapitalize='none' />
+
+                                <Text style={styles.label}>Confirmer le mot de passe</Text>
+                                <TextInput
+                                    secureTextEntry={true}
+                                    onChangeText={(text) => { this.setState({ passwordConfirm: text }) }}
+                                    style={styles.input}
+                                    autoCapitalize='none' />
+
+                                <Pressable style={styles.button}
+                                           onPress={() => {this.submitSignup()}}>
+                                    <Text style={styles.buttonText}>Je m'inscris</Text>
+                                </Pressable>
+
+                                <Text style={styles.noAccount}>Déjà un compte ? <Text style={styles.AccountLink} onPress={() => this.switchForm(true)} >Connectez-vous</Text></Text>
+                            </View>
+                        )
+                ): (
+                    <NavigationContainer>
+                        <Navigator>
+                            <Screen name="Dressing" component={DressingScreen} options={{
+                                tabBarLabel:() => {return null},
+                                title: '',
+                                tabBarIcon: ({ color, size }) => (
+                                    <MaterialCommunityIcons name="wardrobe" color='#ED2D90' size={size} />
+                                ),
+                            }}/>
+                            <Screen name="Marketplace" component={MarketScreen} options={{
+                                tabBarLabel:() => {return null},
+                                tabBarIcon: ({ color, size }) => (
+                                    <MaterialCommunityIcons name="cart" color='#ED2D90' size={size} />
+                                ),
+                            }}/>
+                            <Screen name="Home" component={HomeScreen}  options={{
+                                tabBarLabel:() => {return null},
+                                tabBarIcon: ({ color, size }) => (
+                                    <MaterialCommunityIcons name="circle-slice-8" color='#ED2D90' size={size}/>
+                                ),
+                            }}/>
+                            <Screen name="Forum" component={ForumScreen} options={{
+                                tabBarLabel:() => {return null},
+                                tabBarIcon: ({ color, size }) => (
+                                    <MaterialCommunityIcons name="comment" color='#ED2D90' size={size}/>
+                                ),
+                            }}/>
+                            <Screen name="Profile" component={ProfileScreen} options={{
+                                tabBarLabel:() => {return null},
+                                title: '',
+                                tabBarIcon: ({ color, size }) => (
+                                    <MaterialCommunityIcons name="account-circle" color='#ED2D90' size={size} />
+                                ),
+                            }}/>
+                        </Navigator>
+                    </NavigationContainer>
+                )}
+            </View>
+        )
+    }
+>>>>>>> ead9c24 (login/signup with proto)
 }
 
 const styles = StyleSheet.create({
@@ -272,6 +437,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ead9c24 (login/signup with proto)
     title: {
         fontSize: 24,
         marginBottom: 20,
@@ -309,9 +477,15 @@ const styles = StyleSheet.create({
     AccountLink: {
         color: 'blue',
     },
+<<<<<<< HEAD
 });
 
 export default App;
 =======
 });
 >>>>>>> 0ccc025 (design page login)
+=======
+});
+
+export default App;
+>>>>>>> ead9c24 (login/signup with proto)
