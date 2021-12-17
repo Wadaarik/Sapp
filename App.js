@@ -10,6 +10,7 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 import DressingScreen from "./screens/DressingScreen";
 import MarketScreen from "./screens/MarketScreen";
 import ForumScreen from "./screens/ForumScreen";
+import ProductScreen from "./screens/ProductScreen";
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -49,6 +50,8 @@ export default function App() {
                              <MaterialCommunityIcons name="account-circle" color='#ED2D90' size={size} />
                          ),
                      }}/>
+
+                    <Screen name="Product" component={ProductScreen} options={{ title: 'Product page' }}/>
                 </Navigator>
             </NavigationContainer>
     );
