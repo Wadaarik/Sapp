@@ -183,7 +183,13 @@ class App extends React.Component {
                                     <MaterialCommunityIcons name="account-circle" color='#ED2D90' size={size} />
                                 ),
                             }}/>
-                            <Screen name="Product" component={ProductScreen} options={{ title: 'Product page' }}/>
+                            <Screen name="Product" component={ProductScreen} options={{
+                                tabBarLabel:() => {return null},
+                                title: 'Product page',
+                                tabBarItemStyle: {display: "none"},
+                                tabBarIconStyle: { display: "none" },
+                                tabBarLabelStyle: { display: "none"}
+                            }}/>
                         </Navigator>
                     </NavigationContainer>
                 )}
