@@ -204,4 +204,43 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    title: {
+        fontSize: 24,
+        marginBottom: 20,
+    },
+    label: {
+        width: '90%',
+    },
+    input: {
+        width: '90%',
+        borderColor: '#A6A6A6',
+        borderWidth: 2,
+        borderRadius: 5,
+        margin: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        backgroundColor: '#fff',
+    },
+    button: {
+        backgroundColor: '#ED2D90',
+        borderRadius: 18,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        marginTop: 15,
+    },
+    buttonText: {
+        textTransform: 'uppercase',
+        color: '#FFFFFF'
+    },
+    noAccount: {
+        marginTop: 20,
+    },
+    noAccountLink: {
+        color: 'blue',
+    },
+    AccountLink: {
+        color: 'blue',
+    },
 });
+
+export default App;

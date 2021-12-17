@@ -6,35 +6,35 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 const data = [
     {
         id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-        title: "First Item",
+        title: "Burgungy sweat",
     },
     {
         id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-        title: "Second Item",
+        title: "Burgungy sweat",
     },
     {
         id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
+        title: "Burgungy sweat",
     },
     {
         id: "48932rh2-3da1-4732211f-bd96-145573290",
-        title: "Fourth Item",
+        title: "Burgungy sweat",
     },
     {
         id: "48932rh2-3da1-471f-bd96-1321273290144",
-        title: "Fifth Item",
+        title: "Burgungy sweat",
     },
     {
         id: "R43242332-3da1-471f-bd96-145573290144",
-        title: "Sixth Item",
+        title: "Burgungy sweat",
     },
     {
         id: "R4322-33213da1-471f-bd96-145573290144",
-        title: "Seventh Item",
+        title: "Burgungy sweat",
     },
     {
         id: "R432443132-3da1-471f-b96-145573290144",
-        title: "Height Item",
+        title: "Burgungy sweat",
     },
 ];
 
@@ -44,6 +44,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
             width: 140,
             height: 140,
             resizeMode: 'contain'}}/>
+        <Text style={styles.subtitleItem} numberOfLines={1}>{item.title}</Text>
     </TouchableOpacity>
 );
 
@@ -55,7 +56,7 @@ const HomeScreen = ({props, navigation}) =>{
     const [selectedId, setSelectedId] = useState(null);
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+        const backgroundColor = item.id === selectedId ? "transparent" : "transparent";
         const color = item.id === selectedId ? 'white' : 'black';
 
         return (
@@ -153,8 +154,12 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         width: '100%',
     },
+    subtitleItem: {
+        color: '#0E0E26',
+        fontSize: 16,
+        width: 150
+    },
     item: {
-        backgroundColor: '#f9c2ff',
         marginVertical: 8,
         marginHorizontal: 16,
     },
