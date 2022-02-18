@@ -11,6 +11,7 @@ import MarketScreen from "./screens/MarketScreen";
 import ForumScreen from "./screens/ForumScreen";
 import ProductScreen from "./screens/ProductScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SnapView from "./screens/SnapView";
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -186,6 +187,13 @@ class App extends React.Component {
                             <Screen name="Product" component={ProductScreen} options={{
                                 tabBarLabel:() => {return null},
                                 title: 'Product page',
+                                tabBarItemStyle: {display: "none"},
+                                tabBarIconStyle: { display: "none" },
+                                tabBarLabelStyle: { display: "none"}
+                            }}/>
+                            <Screen name="Photo" component={SnapView} options={{
+                                tabBarLabel:() => {return null},
+                                title: 'Photo page',
                                 tabBarItemStyle: {display: "none"},
                                 tabBarIconStyle: { display: "none" },
                                 tabBarLabelStyle: { display: "none"}

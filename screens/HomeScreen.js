@@ -109,9 +109,12 @@ const HomeScreen = ({props, navigation}) =>{
                 keyExtractor={(item) => item.id}
                 extraData={selectedId}
             />
-            <TouchableOpacity style={{position: 'absolute', bottom: 50, right: 40}} onPress={goTo}>
+            <TouchableOpacity style={{position: 'absolute', bottom: 50, right: 40, zIndex: 1000}} onPress={goTo}>
                 <View style={styles.button}>
-                    <Text style={{color: '#FFF', padding: 5, fontSize: 30, marginTop: -2}}>+</Text>
+                    <Text
+                        style={{color: '#FFF', padding: 5, fontSize: 30, marginTop: -2}}
+                        onPress={() => {navigation.navigate('Photo')}}
+                    >+</Text>
                 </View>
             </TouchableOpacity>
         </SafeAreaView>

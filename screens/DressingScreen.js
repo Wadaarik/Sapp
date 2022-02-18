@@ -70,7 +70,7 @@ const TenuesAll = ({ onPress, backgroundColor, title, uri}) => (
 
 
 
-export default function DressingScreen(){
+export default function DressingScreen({navigation}){
 
     //TABS INDEXES
     const [customSelectedIndex, setCustomSelectedIndex] = useState(0);
@@ -101,8 +101,9 @@ export default function DressingScreen(){
         );
     };
 
-    function SnapView() {
-        alert("Camera need to be active")
+    const SnapView = () => {
+        //alert("Camera need to be active")
+        navigation.navigate('Photo');
     }
 
 
