@@ -1,99 +1,115 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, SafeAreaView, ScrollView, Dimensions} from 'react-native';
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const ProfileScreen = props => {
-
-
-    function Link() {
+class ProfileScreen extends React.Component {
+    Link() {
         alert("redirect to page")
     }
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <ScrollView>
-                <View style={styles.head}>
-                    <View style={styles.header}>
-                        <View>
-                            <Text style={styles.title}>Gérard Emerique</Text>
-                            <Text style={styles.small}>gerard.em@mail.com</Text>
-                        </View>
-                        <Image
-                            style={styles.avatar}
-                            source={{
-                                uri: 'https://img-4.linternaute.com/Bsk8mDIAf58n09YMTWEv5ZMmp9Y=/1500x/smart/ff1cb8ee9aa84df192f5b09ca6e83bbe/ccmcms-linternaute/13105923.jpg',
-                            }}
-                        />
-                    </View>
-                    <View style={styles.header}>
-                        <View>
-                            <Text style={styles.title}>Actuellement, vous possédez <Text style={styles.pinkSpan}>45 </Text>
-                                vêtements et <Text style={styles.pinkSpan}>10 </Text>tenues</Text>
+    submitLogout() {
+        const removeData = async () => {
+            try {
+                await AsyncStorage.removeItem('token');
+                console.log('token remove');
+                this.props.navigation.navigate('Login');
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        removeData();
+    }
 
-                            <Text style={styles.smallLink} onPress={Link}>
-                                Ajoutez des tenues et vêtements <MaterialCommunityIcons style={styles.smallLink}
-                                                                                        name="chevron-right"/>
-                            </Text>
+    render() {
+        return (
+            <SafeAreaView style={styles.container}>
+                <ScrollView>
+                    <View style={styles.head}>
+                        <View style={styles.header}>
+                            <View>
+                                <Text style={styles.title}>Gérard Emerique</Text>
+                                <Text style={styles.small}>gerard.em@mail.com</Text>
+                            </View>
+                            <Image
+                                style={styles.avatar}
+                                source={{
+                                    uri: 'https://img-4.linternaute.com/Bsk8mDIAf58n09YMTWEv5ZMmp9Y=/1500x/smart/ff1cb8ee9aa84df192f5b09ca6e83bbe/ccmcms-linternaute/13105923.jpg',
+                                }}
+                            />
                         </View>
-                    </View>
-                </View>
-                <View style={styles.allParam}>
-                    <View style={styles.parameters}>
-                        <Text style={styles.parametersSubtitle}>Paramètres du compte</Text>
-                        <View style={styles.list}>
-                            <View style={styles.listTitle}>
-                                <Text>Modifier le profil</Text>
-                                <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
-                            </View>
-                            <View style={styles.listTitle}>
-                                <Text>Préférences</Text>
-                                <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
-                            </View>
-                            <View style={styles.listTitle}>
-                                <Text>Langues</Text>
-                                <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
-                            </View>
-                            <View style={styles.listTitle}>
-                                <Text>Me déconnecter</Text>
-                                <MaterialCommunityIcons name="door-closed" style={styles.listMaterial}/>
-                            </View>
-                            <View style={styles.listTitle}>
-                                <Text>Supprimer le compte</Text>
-                                <MaterialCommunityIcons name="emoticon-cry-outline" style={styles.listMaterial}/>
+                        <View style={styles.header}>
+                            <View>
+                                <Text style={styles.title}>Actuellement, vous possédez <Text
+                                    style={styles.pinkSpan}>45 </Text>
+                                    vêtements et <Text style={styles.pinkSpan}>10 </Text>tenues</Text>
+
+                                <Text style={styles.smallLink} onPress={() => {this.Link()}}>
+                                    Ajoutez des tenues et vêtements <MaterialCommunityIcons style={styles.smallLink}
+                                                                                            name="chevron-right"/>
+                                </Text>
                             </View>
                         </View>
                     </View>
-                    <View style={styles.services}>
-                        <View style={styles.parametersSubtitle}>
-                            <Text style={styles.verTitle}>Service client</Text>
-                            <Text style={styles.verTitle}>Ver 0.1</Text>
+                    <View style={styles.allParam}>
+                        <View style={styles.parameters}>
+                            <Text style={styles.parametersSubtitle}>Paramètres du compte</Text>
+                            <View style={styles.list}>
+                                <View style={styles.listTitle}>
+                                    <Text>Modifier le profil</Text>
+                                    <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                                </View>
+                                <View style={styles.listTitle}>
+                                    <Text>Préférences</Text>
+                                    <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                                </View>
+                                <View style={styles.listTitle}>
+                                    <Text>Langues</Text>
+                                    <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                                </View>
+                                <View style={styles.listTitle}>
+                                    <Text onPress={() => {this.submitLogout()}}>Me déconnecter</Text>
+                                    <MaterialCommunityIcons name="door-closed" style={styles.listMaterial}
+                                                            onPress={() => {this.submitLogout()}}/>
+                                </View>
+                                <View style={styles.listTitle}>
+                                    <Text>Supprimer le compte</Text>
+                                    <MaterialCommunityIcons name="emoticon-cry-outline" style={styles.listMaterial}/>
+                                </View>
+                            </View>
                         </View>
-                        <View style={styles.list}>
-                            <View style={styles.listTitle}>
-                                <Text>FAQ</Text>
-                                <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                        <View style={styles.services}>
+                            <View style={styles.parametersSubtitle}>
+                                <Text style={styles.verTitle}>Service client</Text>
+                                <Text style={styles.verTitle}>Ver 0.1</Text>
                             </View>
-                            <View style={styles.listTitle}>
-                                <Text>Page Instagram</Text>
-                                <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
-                            </View>
-                            <View style={styles.listTitle}>
-                                <Text>Conditions Générales de ventes</Text>
-                                <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
-                            </View>
-                            <View style={styles.listTitle}>
-                                <Text>Politique de confidentialité</Text>
-                                <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                            <View style={styles.list}>
+                                <View style={styles.listTitle}>
+                                    <Text>FAQ</Text>
+                                    <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                                </View>
+                                <View style={styles.listTitle}>
+                                    <Text>Page Instagram</Text>
+                                    <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                                </View>
+                                <View style={styles.listTitle}>
+                                    <Text>Conditions Générales de ventes</Text>
+                                    <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                                </View>
+                                <View style={styles.listTitle}>
+                                    <Text>Politique de confidentialité</Text>
+                                    <MaterialCommunityIcons name="chevron-right" style={styles.listMaterial}/>
+                                </View>
                             </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.image}>
-                    <Image source={require('../assets/profile-design-sapp.png')} />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
-    );
+                    <View style={styles.image}>
+                        <Image source={require('../assets/profile-design-sapp.png')}/>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        );
+    }
 };
 
 const styles = StyleSheet.create({
